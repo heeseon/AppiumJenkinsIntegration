@@ -195,7 +195,7 @@ public class AndroidSetup extends BaseScreen{
 
     
     public static JSONArray minesota(String result){
-    	byte res[] = driver.pullServerFile(result);
+    	byte res[]=null;// = driver.pullServerFile(result);
     	
     	System.err.println("data = " + new String(res));
     	JSONArray infoValue = null ;
