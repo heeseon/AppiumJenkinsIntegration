@@ -22,12 +22,6 @@
 
   <name>AppiumDemoWithJenkins</name>
   <repositories>
-
-<repository>
- <id>in-project</id>
- <name>custom jars</name>
-	<url>file://heeseon/lib</url>
-</repository>
   <repository>
 	<id>in-project-jenkins</id>
 	<name>custom jars-jenkins</name>
