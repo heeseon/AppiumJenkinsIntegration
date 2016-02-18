@@ -25,7 +25,7 @@
   <repository>
 	<id>in-project-jenkins</id>
 	<name>custom jars-jenkins</name>
-	<url>file://${JENKINS_HOME}/jobs/${JOB_NAME}/workspace/lib</url>
+	<url>file://${JENKINS_HOME}/workspace/${JOB_NAME}/lib</url>
 </repository>
 
 
