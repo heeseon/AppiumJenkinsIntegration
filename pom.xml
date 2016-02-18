@@ -27,6 +27,12 @@
 	<name>custom jars-jenkins</name>
 	<url>file://${JENKINS_HOME}/workspace/${JOB_NAME}/lib</url>
 </repository>
+<repository>
+	<id>in-project</id>
+	<name>custom jars</name>
+	<url>file://${project.basedir}/lib</url>
+</repository>
+
 </repositories>
   
   
