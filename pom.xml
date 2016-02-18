@@ -27,6 +27,11 @@
  <name>custom jars</name>
  <url>file://AppiumDemoWithJenkins/lib</url>
 </repository>
+<repository>
+	<id>in-project-jenkins</id>
+	<name>custom jars-jenkins</name>
+	<url>file://${JENKINS_HOME}/jobs/workspace/lib</url>
+</repository>
 </repositories>
   
   
