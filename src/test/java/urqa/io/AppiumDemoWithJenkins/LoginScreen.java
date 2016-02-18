@@ -21,9 +21,9 @@ public class LoginScreen extends NewBaseScreen {
 		WebDriverWait wait = new WebDriverWait(driver, 100000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(userId));
         
-        driver.findElement(userId).sendKeys("domich.hwang@gmail.com");
+        driver.findElement(userId).sendKeys("");
         driver.findElement(userId).click();
-        driver.findElement(userPW).sendKeys("sharp1033");
+        driver.findElement(userPW).sendKeys("");
         driver.findElement(userPW).click();
         driver.findElement(login).click(); 
         

@@ -1,6 +1,6 @@
 package urqa.io.AppiumDemoWithJenkins;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileDriver;
+import io.appium.heeseon.AppiumDriver;
+import io.appium.heeseon.MobileDriver;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

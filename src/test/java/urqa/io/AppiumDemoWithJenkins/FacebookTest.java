@@ -6,8 +6,8 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import io.appium.java_client.TouchShortcuts;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.heeseon.TouchShortcuts;
+import io.appium.heeseon.android.AndroidDriver;
 
 import org.junit.After;
 import org.junit.AfterClass;

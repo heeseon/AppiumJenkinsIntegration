@@ -2,7 +2,7 @@ package urqa.io.AppiumDemoWithJenkins;
 
 
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.heeseon.android.AndroidDriver;
 
 import org.apache.commons.io.IOUtils;
 import org.openqa.selenium.WebDriver;

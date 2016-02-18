@@ -21,7 +21,22 @@
   </build>
 
   <name>AppiumDemoWithJenkins</name>
+  <repositories>
+<repository>
+ <id>in-project</id>
+ <name>custom jars</name>
+ <url>file://AppiumDemoWithJenkins/lib</url>
+</repository>
+<repository>
+	<id>in-project-jenkins</id>
+	<name>custom jars-jenkins</name>
+	<url>file://${JENKINS_HOME}/jobs/${JOB_NAME}/workspace/lib</url>
+</repository>
+</repositories>
+  
+  
   <url>http://maven.apache.org</url>
+
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -30,9 +45,16 @@
   <dependencies>
   <dependency>
 	<groupId>io.appium</groupId>
-	<artifactId>java-client</artifactId>
+	<artifactId>heeseon</artifactId>
 	<version>3.3.0</version>
-  </dependency>
+</dependency>
+  
+<dependency>
+    <groupId>io.appium</groupId>
+    <artifactId>heeseon</artifactId>
+    <version>3.3.0</version>
+</dependency>
+
   <dependency>
 	<groupId>org.seleniumhq.selenium</groupId>
 	<artifactId>selenium-server</artifactId>

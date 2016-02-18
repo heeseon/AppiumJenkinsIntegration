@@ -12,9 +12,9 @@ import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import io.appium.java_client.MobileDriver;
-import io.appium.java_client.TouchAction;
-import io.appium.java_client.TouchShortcuts;
+import io.appium.heeseon.MobileDriver;
+import io.appium.heeseon.TouchAction;
+import io.appium.heeseon.TouchShortcuts;
 
 import java.io.File;
 import java.io.IOException;
