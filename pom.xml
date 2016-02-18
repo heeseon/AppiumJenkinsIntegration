@@ -22,13 +22,11 @@
 
   <name>AppiumDemoWithJenkins</name>
   <repositories>
-  
-<repository>
+  <repository>
 	<id>in-project-jenkins</id>
 	<name>custom jars-jenkins</name>
 	<url>file://${JENKINS_HOME}/jobs/${JOB_NAME}/workspace/lib</url>
 </repository>
-
 
 
 </repositories>
@@ -47,7 +45,7 @@
 	<artifactId>heeseon</artifactId>
 	<version>3.3.0</version>
 </dependency>
-
+  
   <dependency>
 	<groupId>org.seleniumhq.selenium</groupId>
 	<artifactId>selenium-server</artifactId>
