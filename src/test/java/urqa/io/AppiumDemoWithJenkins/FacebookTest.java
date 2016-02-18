@@ -30,7 +30,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 //import scenarios.AndroidSetup;
 
-
+@RunWith(UrQARunner.class)
 public class FacebookTest {
 	public static AndroidDriver driver;
 
@@ -79,6 +79,7 @@ public class FacebookTest {
     	try {
 			AndroidSetup.prepareAndroidForAppium("/Users/hwangheeseon/Documents/workspace3/AppiumDemo/apps", "com.facebook.katana_50.0.0.10.54-16053538_minAPI15.apk", "");
 			//JUnitExecutionTestListener.prepareJUnitExecutionListener();
+			
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

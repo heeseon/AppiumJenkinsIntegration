@@ -83,27 +83,27 @@ public class AndroidSetup extends BaseScreen{
     
     protected static void destroyAndroidForAppium(){
     	
-//    	String profile = "";driver.endProfile();
-//    	
-////    	System.err.println("========endProfile = " + profile);
+    	String profile = driver.endProfile();
+    	
+//    	System.err.println("========endProfile = " + profile);
 //    	String result = driver.customProperty("end", "");
-//    	
-//    	try {
-//			Thread.sleep(5000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//    	
+    	
+    	try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
 //    	System.err.println("result = " + result);
-//    	//File outputfile = new File(destPath + "/" + "outputfile.json");
-//    	
-//    	JSONArray info = minesota(profile);
-//    	
-//    	
-//    	
-//    	
-//    	sendresult(info);
+    	//File outputfile = new File(destPath + "/" + "outputfile.json");
+    	
+    	JSONArray info = minesota(profile);
+    	
+    	
+    	
+    	
+    	sendresult(info);
     	 
     	driver.quit();
     }
@@ -170,7 +170,7 @@ public class AndroidSetup extends BaseScreen{
             	}
             	
             	
-            	System.err.println("app = " + app +", device = " + device);
+            	//System.err.println("app = " + app +", device = " + device);
             	JUnitExecutionTestListener.app = app;
             	JUnitExecutionTestListener.device = device;
             	
@@ -195,9 +195,9 @@ public class AndroidSetup extends BaseScreen{
 
     
     public static JSONArray minesota(String result){
-    	byte res[]=null;// = driver.pullServerFile(result);
+    	byte res[]=driver.pullServerFile(result);
     	
-    	System.err.println("data = " + new String(res));
+    	//System.err.println("data = " + new String(res));
     	JSONArray infoValue = null ;
 
     	
@@ -666,7 +666,7 @@ public class AndroidSetup extends BaseScreen{
             		if(eglPrivateDirty != null ){
             			if(!ret[11].trim().endsWith("undefined")){
             		
-            				System.err.println("eglPrivateDirty = " +  ret[11]);
+            				//System.err.println("eglPrivateDirty = " +  ret[11]);
             			
 		            		try {
 		            			if(first){
@@ -694,7 +694,7 @@ public class AndroidSetup extends BaseScreen{
             		if(eglPss != null){
             			if(!ret[12].trim().endsWith( "undefined")){
             		
-            				System.err.println("eglPss = " +  ret[12]);
+            				//System.err.println("eglPss = " +  ret[12]);
 		            		try {
 		            			if(first){
 		            				eglPss.write(ret[12]);
@@ -721,7 +721,7 @@ public class AndroidSetup extends BaseScreen{
             		if(glPrivateDirty != null ){
             			if( ! ret[13].trim().endsWith("undefined")){
             		
-	            			System.err.println("glPrivateDirty = " +  ret[13]);
+	            			//System.err.println("glPrivateDirty = " +  ret[13]);
 		            		try {
 		            			if(first){
 		            				glPrivateDirty.write(ret[13]);
@@ -747,7 +747,7 @@ public class AndroidSetup extends BaseScreen{
             		if(glPss != null ){
             			if( ! ret[14].trim().endsWith("undefined")){
             		
-	            			System.err.println("glPss = " +  ret[14]);
+	            			//System.err.println("glPss = " +  ret[14]);
 		            		try {
 		            			if(first){
 		            				glPss.write(ret[14]);
@@ -776,7 +776,7 @@ public class AndroidSetup extends BaseScreen{
             		}
             		
                 	
-                	System.out.println("key = " + keyObj + ", value = " + dataObj);
+                	//System.out.println("key = " + keyObj + ", value = " + dataObj);
                 }
             }
             try {

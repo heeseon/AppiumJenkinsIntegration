@@ -60,7 +60,7 @@ public class JUnitExecutionTestListener extends RunListener {
 	
 	
 	public static void prepareJUnitExecutionListener(){
-		System.out.println("===========prepareJUnitExecutionListener=============");
+		//System.out.println("===========prepareJUnitExecutionListener=============");
 		try {
 		
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy_HH_mm_ss"); 
@@ -69,7 +69,7 @@ public class JUnitExecutionTestListener extends RunListener {
 			String destDir = "testResultDir"+ File.separator + str; 
 			File dir = new File(destDir);
 			dir.mkdirs();
-			System.out.println("full = " + dir.getAbsolutePath());
+			//System.out.println("full = " + dir.getAbsolutePath());
 			
 			BaseScreen.destPath = testResultDir = dir.getAbsolutePath();
 			BaseScreen.resultDirectory = resultDirectory = str;
@@ -108,14 +108,14 @@ public class JUnitExecutionTestListener extends RunListener {
 	}
 	
 	public void sendLog(String type, String value){
-    	//String result = FacebookTest.driver.customProperty(type, value);
+    	String result = FacebookTest.driver.customProperty(type, value);
     	//System.out.println("Started: result: " + result);
 
 	}
 	
 
     public void testRunStarted(Description description) throws Exception {
-        System.out.println("testRunStarted");
+        //System.out.println("testRunStarted");
         //takeScreenShot();
         
         //prepareJUnitExecutionListener();
@@ -124,7 +124,7 @@ public class JUnitExecutionTestListener extends RunListener {
     public void testRunFinished(Result result) throws Exception {
     	
     	try{
-	        System.out.println("testRunFinished Number of tests executed: " + result.getRunCount());
+	        //System.out.println("testRunFinished Number of tests executed: " + result.getRunCount());
 	        
 	        
 	        String t_result = "{ \"ResultDirectory\" : \"" + resultDirectory + "\", ";
@@ -141,7 +141,7 @@ public class JUnitExecutionTestListener extends RunListener {
 	        	
 	        	t_result += "\"total\" : " + totalCount + ", \"shortresult\" : \"" + passCount +"/" + failureCount + "/" + ignoreCount +"\", \"resultfile\" :\""+ resultDirectory + "_result.json\", \"profilefile\" : \"" +resultDirectory + "_profile.js\"" ;
 	        	
-	        	System.out.println("data for testdb = " +  t_result);
+	        	//System.out.println("data for testdb = " +  t_result);
 	        	
 //	        	obj.put("PASS", passCount);
 //	        	obj.put("FAIL", failureCount);
@@ -173,8 +173,8 @@ public class JUnitExecutionTestListener extends RunListener {
 	    	}
 
 	    	if(!firstcase){
-	    		//String path = FacebookTest.driver.setProfile(resultDirectory, 2000, "com.facebook.katana");
-	    		System.out.println("====================path = " );
+	    		String path = FacebookTest.driver.setProfile(resultDirectory, 2000, "com.facebook.katana");
+	    		//System.out.println("====================path = " );
 	    		
 	    	}
 	    	
@@ -198,7 +198,7 @@ public class JUnitExecutionTestListener extends RunListener {
 	    		logObj = new JSONObject();
 	    	}
 	        
-	    	System.out.println("Started: " + description.getMethodName());
+	    	//System.out.println("Started: " + description.getMethodName());
 	    	takeScreenShot("before-" +description.getMethodName());
     	}catch(Exception e){
     		e.printStackTrace();
@@ -214,7 +214,7 @@ public class JUnitExecutionTestListener extends RunListener {
     	testEndedTime = System.currentTimeMillis(); 
     	try{
     		
-	        System.out.println("Finished: " + description.getMethodName());
+	        //System.out.println("Finished: " + description.getMethodName());
 	        
         	
 	        if(file != null){
@@ -229,7 +229,7 @@ public class JUnitExecutionTestListener extends RunListener {
 	        	//list.add(obj);
 	        	
 	        	
-	        	System.out.println("druation = " + (testEndedTime - testStartedTime/1000));
+	        	//System.out.println("druation = " + (testEndedTime - testStartedTime/1000));
 	        	
 	        	if(!firstcase){
 	        		firstcase = true;
@@ -258,7 +258,7 @@ public class JUnitExecutionTestListener extends RunListener {
     public void testFailure(Failure failure) throws Exception {
     	
     		
-        System.out.println("Failed: Description : " + failure.getDescription().getMethodName());
+        //System.out.println("Failed: Description : " + failure.getDescription().getMethodName());
         if(file != null){
         	//JSONObject obj = new JSONObject();
         	String value = "";
@@ -277,7 +277,7 @@ public class JUnitExecutionTestListener extends RunListener {
 
     public void testAssumptionFailure(Failure failure) {
     	
-        System.out.println("Failed: " + failure.getDescription().getMethodName());
+        //System.out.println("Failed: " + failure.getDescription().getMethodName());
         if(file != null){
         	//JSONObject obj = new JSONObject();
         	String value = "";
@@ -296,7 +296,7 @@ public class JUnitExecutionTestListener extends RunListener {
 
     public void testIgnored(Description description) throws Exception {
     	
-        System.out.println("Ignored: " + description.getMethodName());
+        //System.out.println("Ignored: " + description.getMethodName());
         
         if(file != null){
         	
@@ -345,7 +345,7 @@ public class JUnitExecutionTestListener extends RunListener {
         testdb+= app;
         testdb += "}";
         		
-        System.out.println("test db = " + testdb);
+        //System.out.println("test db = " + testdb);
 
         String count = "2";
         MultipartBuilder multipartBuilder = new MultipartBuilder();
@@ -355,43 +355,42 @@ public class JUnitExecutionTestListener extends RunListener {
                 .addFormDataPart("results", testResultPullPath, fileBody)
                 .addFormDataPart("results", profileResultPullPath, fileBody2);
         
-        
-        
-        
-        
-        
-
-        //        .addFormDataPart("sendProfileName", sendProfileName);
-        //Log.i("hhs", "---------------------" + files.size());
-//        for(int k = 0 ; k < files.size(); ++ k){
-//            Log.i("hhs", "---------------------" +files.elementAt(k).toString());
-//            File sendfile = new File(files.elementAt(k).toString());
-//
-//            RequestBody sendfileBody = RequestBody.create(MediaType.parse(contentType), sendfile);
-//            multipartBuilder.addFormDataPart("thumbnail", files.elementAt(k).toString(), sendfileBody);
-//        }
-
-
+    
         RequestBody requestBody = multipartBuilder.build();
 
 
         Request request = new Request.Builder()
-                .url("http://localhost:3000/addTestResult")
+                .url("http://127.0.0.1:3000/addTestResult")
                 .post(requestBody)
                 .build();
 
-        client.newCall(request).enqueue(new Callback() {
-            public void onFailure(Request request, IOException e) {
-                System.out.println("onFailure........................" + request.toString() + ", " + e.getMessage());
-            }
-
-            
-
-			public void onResponse(Response arg0) throws IOException {
-				// TODO Auto-generated method stub
-				System.err.println("onResponse........................" + arg0.toString() );
-			}
-        });
+        
+        Response response = null;
+		try {
+			response = client.newCall(request).execute();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        try {
+			System.err.println("result = " +  response.body().string());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+//        client.newCall(request).enqueue(new Callback() {
+//            public void onFailure(Request request, IOException e) {
+//                System.out.println("onFailure........................" + request.toString() + ", " + e.getMessage());
+//            }
+//
+//            
+//
+//			public void onResponse(Response arg0) throws IOException {
+//				// TODO Auto-generated method stub
+//				System.err.println("onResponse........................" + arg0.toString() );
+//			}
+//        });
 
     }
     
