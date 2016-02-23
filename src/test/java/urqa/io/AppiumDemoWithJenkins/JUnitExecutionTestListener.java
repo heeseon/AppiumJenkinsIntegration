@@ -172,33 +172,23 @@ public class JUnitExecutionTestListener extends RunListener {
 	    		
 	    	}
 
+	    	sendLog("testcasename", description.getClassName() +"."+ description.getMethodName());
+
 	    	if(!firstcase){
 	    		String path = FacebookTest.driver.setProfile(resultDirectory, 2000, "com.facebook.katana");
-	    		//System.out.println("====================path = " );
 	    		
 	    	}
-	    	
-	    	
-	    	
-	    	sendLog("testcasename", description.getClassName() +"."+ description.getMethodName());
 	    	
 	    	if(!firstcase){
 	    		sendLog("profile", "");
 	    		sendLog("profileResultDir",testResultDir);
-	    		
-	    		
-	        	
-	        	//System.out.println("Started: result: " + result);
-	    	//	sendLog("ip", InetAddress.getLocalHost().getHostAddress());
-	    		//firstcase = true;
-	    		
 	    	}
 	    	
 	    	if(file != null){
 	    		logObj = new JSONObject();
 	    	}
 	        
-	    	//System.out.println("Started: " + description.getMethodName());
+	    	System.out.println("Started: " + description.getMethodName());
 	    	takeScreenShot("before-" +description.getMethodName());
     	}catch(Exception e){
     		e.printStackTrace();
@@ -214,7 +204,7 @@ public class JUnitExecutionTestListener extends RunListener {
     	testEndedTime = System.currentTimeMillis(); 
     	try{
     		
-	        //System.out.println("Finished: " + description.getMethodName());
+	        System.out.println("Finished: " + description.getMethodName());
 	        
         	
 	        if(file != null){

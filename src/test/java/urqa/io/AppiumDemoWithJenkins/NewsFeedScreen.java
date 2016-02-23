@@ -1,4 +1,8 @@
 package urqa.io.AppiumDemoWithJenkins;
+import io.appium.heeseon.MobileElement;
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,11 +16,8 @@ public class NewsFeedScreen extends NewBaseScreen {
 
 	By translation = By.id(app_package_name + "see_translation");
 	By story_message = By.id(app_package_name + "feed_story_message");
-
-	//Continue Reading 갖는 android.view.View 클래스 가 아래 있는지 보고 있으면 클릭 
-
-	//android.support.v7.widget.RecyclerView 로 스크롤 범위 지정
-	
+	By newsContainer = By.id(app_package_name + "newsfeed_container");
+	By new_stories = By.id(app_package_name + "new_stories_button");
 	
 	
 	public NewsFeedScreen(WebDriver driver, String packageName) {
@@ -26,42 +27,142 @@ public class NewsFeedScreen extends NewBaseScreen {
 	
 	public void checkScreen(){
 		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(newsContainer));
+	    
 	}
 	
-	public boolean checkTranlation(){
+	public WebElement checkTranlation(){
 		try {
-			WebDriverWait wait = new WebDriverWait(driver, 3000);
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 	        wait.until(ExpectedConditions.visibilityOfElementLocated(translation));
-	        driver.findElement(translation);
+	        WebElement element = (WebElement) driver.findElement(translation);
+	        
+	        return element;
+	        
 		}catch(Exception e){
-			return false;
+			return null;
 		}
-		
-		return true;
+
 	}
 	
-	
-	public boolean checkContinuousReading(){
-		
-		WebElement element;
-		
-		try {
-			element = driver.findElement(story_message);
-	       
-		}catch(Exception e){
-			return false;
-		}
-		
-		//WebElement 
-		
-		
-		
-		return true;
-	}
 	
 	public void clickTranslation(){
-		click(translation);
+		
+		 
+		for(int i = 0 ; i < 3; ){
+			WebElement element = checkTranlation();
+			 if( element == null ){
+			 	swipeUp();
+			 }
+			 else {
+				 ++i;
+			 	element.click();
+			 	
+			 }
+			 
+			 try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+
+	
+	public WebElement checkContinuousReading(){
+		
+		
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+	        wait.until(ExpectedConditions.visibilityOfElementLocated(story_message));
+	        	        
+		}catch(Exception e){
+			return null;
+		}
+				
+		
+		By view_locator = By.className("android.view.View");
+		
+		
+    	WebElement parentElement = null;
+    	List views = null;
+    	
+    	try{
+    		parentElement = (WebElement) driver.findElement(story_message);
+    		views = (List) parentElement.findElements(view_locator);
+        	
+        	for(int i = 0 ; i < views.size() ; ++ i){
+        		MobileElement element = (MobileElement) views.get(i);
+        		
+        		if ( element.getText() != null &&  element.getText().endsWith("Continue Reading") )
+        			return element;
+        		
+        	}
+    	
+    	}catch(Exception e){
+    		return null;
+    	}
+    	
+		return null;
+
 	}
 	
+	public void clickContinuousReading(){
+		
+		for(int i = 0 ; i < 3; ){
+			WebElement element = checkContinuousReading();
+		    
+			 if( element == null ){
+				 swipeUp();
+			 }
+			 else {
+				 ++i;
+			 	element.click();
+			 	try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 	
+			 	driver.navigate().back();
+			 	
+			 	try {
+					Thread.sleep(300);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			 	
+			 	swipeUp();
+			 	
+			 }
+			 
+			 try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 
+		}
+
+	}
+	
+	public void displayNewStories(){
+		
+		WebElement element = (WebElement) driver.findElement(new_stories);
+		element.click();
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

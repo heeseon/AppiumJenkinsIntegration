@@ -80,7 +80,27 @@ public class NewBaseScreen {
     	
 	    	((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
 	    	try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	
+    	
+    }
+    
+    protected void swipeUp(double d, double f){
+    	//new TouchAction(driver).flick(0,-10).perform();
+    	Dimension size = driver.manage().window().getSize();
+    	int startX = size.width/2;
+    	int startY = (int) (size.height *d);
+    	int endY = (int) (size.height *f);
+    	
+    	
+    	
+	    	((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
+	    	try {
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -92,11 +112,28 @@ public class NewBaseScreen {
     protected void swipeDown(){
     	Dimension size = driver.manage().window().getSize();
     	int startX = size.width/2;
-    	int startY = (int) (size.height *0.20);
+    	int startY = (int) (size.height *0.25);
     	int endY = (int) (size.height *0.90);
     		((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
 	    	try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	//new TouchAction(driver).flick(0,-10).perform();
+    	//((TouchShortcuts) driver).swipe(100,100,100,200,2000);
+    	//new TouchAction((MobileDriver) driver).moveTo( 0 , -100).perform();
+    }
+    
+    protected void swipeDown(double d, double f){
+    	Dimension size = driver.manage().window().getSize();
+    	int startX = size.width/2;
+    	int startY = (int) (size.height *d);
+    	int endY = (int) (size.height *f);
+    		((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
+	    	try {
+				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

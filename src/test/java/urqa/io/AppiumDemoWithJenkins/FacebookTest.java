@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -48,28 +49,15 @@ public class FacebookTest {
     }
 	
 	public FacebookTest(){
-		
-
 		driver = AndroidSetup.driver;
-	    
-		
-		/*
-		home = new HomeScreen(driver);
-		adsAPIDemo = new AdsAPIDemoScreen(driver);
-		adsListView = new AdsListViewScreen(driver);
-		
-		*/
-		System.err.println("------------------------------constructor--------------------------------");
 	}
 	
     //테스트 전처리 구문 
     @Before
     public void setUp() throws Exception {
-    	System.err.println("------------------------------AppiumDemo.setUp--------------------------------");
     }
     @After
     public void afterTest() throws Exception {
-    	System.err.println("------------------------------AppiumDemo.afterTest--------------------------------");
     	//driver.quit(); //세션 생성을 위해 사용했던 리소스 해제 
     }
 
@@ -84,16 +72,12 @@ public class FacebookTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	System.err.println("------------------------------AppiumDemo.setUpInitialize--------------------------------");
- //   	driver = AndroidSetup.prepareAndroidForAppium("/Users/hwangheeseon/Documents/workspace3/AppiumDemo/apps", "app-debug.apk");
-    	
     	
     }
 
   //테스트 후처리 구문 
     @AfterClass
     public static void tearDown() throws Exception {
-    	System.err.println("------------------------------AppiumDemo.tearDown--------------------------------");
     	AndroidSetup.destroyAndroidForAppium();
     }
     
@@ -123,7 +107,7 @@ public class FacebookTest {
 
 
     @Test
-    public void check3Test(){
+    public void check1Test(){
         // String app_package_name = "com.example.swipetest:id/";
     	LoginScreen login = new LoginScreen(driver, facebook_package_name);
 	    MainScreen main = new MainScreen(driver, facebook_package_name);
@@ -132,68 +116,494 @@ public class FacebookTest {
         main.checkScreen();
     }
    
+    
+    @Test
+    public void check2Test(){
+        // String app_package_name = "com.example.swipetest:id/";
+    	
+	    MainScreen main = new MainScreen(driver, facebook_package_name);
+	    NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+	    main.clickFeedTab();
+	    feedscreen.checkScreen();
+	    
+    }
+   
+    @Test
+    public void check3Test(){
+        // String app_package_name = "com.example.swipetest:id/";
+    	
+	    MainScreen main = new MainScreen(driver, facebook_package_name);
+	    NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+	    try{
+	    	feedscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFeedTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+	    
+	    feedscreen.clickTranslation();
+    } 
+    
     @Test
     public void check4Test(){
         // String app_package_name = "com.example.swipetest:id/";
-    	LoginScreen login = new LoginScreen(driver, facebook_package_name);
+    	
 	    MainScreen main = new MainScreen(driver, facebook_package_name);
-        
-    	for(int i=0; i < 10 ; ++i){
-
-        	Dimension size = driver.manage().window().getSize();
-        	int startX = size.width/2;
-        	int startY = (int) (size.height *0.90);
-        	int endY = (int) (size.height *0.10);
-        	
-        	((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
-    	    
-    	    try {
-    			Thread.sleep(5000);
-    		} catch (InterruptedException e) {
-    				// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-        	
-    	}
-
-        
-        
-    }    
+	    NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+	    try{
+	    	feedscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFeedTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+	    
+	    feedscreen.clickContinuousReading();
+    } 
     
     @Test
     public void check5Test(){
-        // String app_package_name = "com.example.swipetest:id/";
-    	LoginScreen login = new LoginScreen(driver, facebook_package_name);
-	    MainScreen main = new MainScreen(driver, facebook_package_name);
-        
-    	for(int i=0; i < 10 ; ++i){
-
-        	Dimension size = driver.manage().window().getSize();
-        	int startX = size.width/2;
-        	int startY = (int) (size.height *0.30);
-        	int endY = (int) (size.height *0.90);
-        	((TouchShortcuts) driver).swipe(startX,startY,startX,endY,1000);
-    	    try {
-    			Thread.sleep(5000);
-    		} catch (InterruptedException e) {
-    				// TODO Auto-generated catch block
-    			e.printStackTrace();
-    		}
-        	
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+	    try{
+	    	feedscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFeedTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+	    
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeUp();
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     	}
     	
-    	        
-    }     
+
+    }
+    
+    @Test
+    public void check6Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+    	
+    	
+    	
+	    try{
+	    	feedscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFeedTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+	    
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeDown();
+    		try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    @Test
+    public void check7Test(){
+        // String app_package_name = "com.example.swipetest:id/";
+    	
+	    MainScreen main = new MainScreen(driver, facebook_package_name);
+	    FriendRequestScreen  friendrequestscree  = new FriendRequestScreen(driver, facebook_package_name);
+	    main.clickFriendRequstTab();
+	    
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    friendrequestscree.checkScreen();
+	   
+	    friendrequestscree.visitFriends();
+	    main.swipeUp();
+	    friendrequestscree.visitFriends();
+	    
+    }
+    
+    @Test
+    public void check8Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	FriendRequestScreen  friendrequestscree  = new FriendRequestScreen(driver, facebook_package_name);
+    	try{
+    		friendrequestscree.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFriendRequstTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeUp(0.80, 0.20);
+    		try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    @Test
+    public void check9Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	
+    	FriendRequestScreen  friendrequestscree  = new FriendRequestScreen(driver, facebook_package_name);
+    	try{
+    		friendrequestscree.checkScreen();
+	    }catch(Exception e){
+	    	main.clickFriendRequstTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeDown(0.30, 0.90);
+    		try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    
+    @Test
+    public void check10Test(){
+        // String app_package_name = "com.example.swipetest:id/";
+    	
+	    MainScreen main = new MainScreen(driver, facebook_package_name);
+	    NotificationScreen  notificationscreen  = new NotificationScreen(driver, facebook_package_name);
+	    main.clickNotificationTab();
+	    
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    notificationscreen.checkScreen();
+	   
+	    notificationscreen.visitFavorites();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    main.swipeUp();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    notificationscreen.visitFavorites();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+    }
+    
+    @Test
+    public void check11Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	NotificationScreen  notificationscreen  = new NotificationScreen(driver, facebook_package_name);
+    	try{
+    		notificationscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickNotificationTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeUp();
+    		try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    @Test
+    public void check12Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	NotificationScreen  notificationscreen  = new NotificationScreen(driver, facebook_package_name);
+    	try{
+    		notificationscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickNotificationTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeDown();
+    		try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    
+    @Test
+    public void check13Test(){
+        // String app_package_name = "com.example.swipetest:id/";
+    	
+	    MainScreen main = new MainScreen(driver, facebook_package_name);
+	    BookmarkScreen  bookmarkscreen  = new BookmarkScreen(driver, facebook_package_name);
+	    main.clickBookmarkTab();
+	    
+	    try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    bookmarkscreen.checkScreen();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   
+	    bookmarkscreen.visitFavorites();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    main.swipeUp();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+	    bookmarkscreen.visitFavorites();
+	    
+	    try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+    }
+    
+    @Test
+    public void check14Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	BookmarkScreen  bookmarkscreen  = new BookmarkScreen(driver, facebook_package_name);
+    	try{
+    		bookmarkscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickBookmarkTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeUp();
+    		try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
+    
+    @Test
+    public void check15Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	BookmarkScreen  bookmarkscreen  = new BookmarkScreen(driver, facebook_package_name);
+    	try{
+    		bookmarkscreen.checkScreen();
+	    }catch(Exception e){
+	    	main.clickBookmarkTab();
+	    	try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    }
+    	
+    	
+    	for(int i = 0 ; i < 3 ; ++ i){
+    		main.swipeDown();
+    		try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+    	
+
+    }
     
     
     
+    @Test
+    public void check16Test(){
+    	
+    	MainScreen main = new MainScreen(driver, facebook_package_name);
+    	NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+    	
+    	main.inputWordinSearch("beatles");
+    	
+    	try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	main.inputEnterKeyinSearch();
+    	
+    	try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+    	while(true){
+			try{
+				feedscreen.checkScreen();
+				break;
+			}catch(Exception e1){
+				driver.navigate().back();
+				try {
+					Thread.sleep(50);
+				} catch (Exception e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				
+			}
+			
+		}
+    	
+    	try {
+			Thread.sleep(1000);
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+    	
+
+    }
     
+    @Test
+    public void check17Test(){
+    	
+    	NewsFeedScreen feedscreen = new NewsFeedScreen(driver, facebook_package_name);
+    	feedscreen.displayNewStories();
     
-    
-    
-    
-    
-    
+    }
     
     
 /*

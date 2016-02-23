@@ -56,7 +56,7 @@ public class AndroidSetup extends BaseScreen{
         capabilities.setCapability("platformName", System.getProperty("platformVersion"));
         capabilities.setCapability("platformVersion","5.0");
         //capabilities.setCapability("udid","192.168.56.101:5555");
-        
+        capabilities.setCapability("newCommandTimeout", 60 * 5);
 
         //other caps
         capabilities.setCapability("app", app.getAbsolutePath());
@@ -73,6 +73,7 @@ public class AndroidSetup extends BaseScreen{
         capabilities.setCapability("deviceName","Android");
         capabilities.setCapability("platformName","Android");
         //capabilities.setCapability("udid",id);
+        capabilities.setCapability("newCommandTimeout", 60 * 5);
         
 
         //other caps
@@ -85,9 +86,6 @@ public class AndroidSetup extends BaseScreen{
     	
     	String profile = driver.endProfile();
     	
-//    	System.err.println("========endProfile = " + profile);
-//    	String result = driver.customProperty("end", "");
-    	
     	try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
@@ -95,13 +93,7 @@ public class AndroidSetup extends BaseScreen{
 			e.printStackTrace();
 		}
     	
-//    	System.err.println("result = " + result);
-    	//File outputfile = new File(destPath + "/" + "outputfile.json");
-    	
     	JSONArray info = minesota(profile);
-    	
-    	
-    	
     	
     	sendresult(info);
     	 
@@ -365,7 +357,6 @@ public class AndroidSetup extends BaseScreen{
             	key = (String) it.next();
             	
                 String fileName = destPath + File.separator + (i++) + ".json";
-                System.out.println( "fileName = " + fileName );
                 
                 JSONArray profile = (JSONArray) json.get(key);
                 

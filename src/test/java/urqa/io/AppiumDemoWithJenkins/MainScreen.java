@@ -1,9 +1,13 @@
 package urqa.io.AppiumDemoWithJenkins;
 import io.appium.heeseon.AppiumDriver;
 import io.appium.heeseon.MobileDriver;
+import io.appium.heeseon.MobileElement;
+import io.appium.heeseon.TouchShortcuts;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -43,7 +47,22 @@ public class MainScreen extends NewBaseScreen {
 	}
 	
 	public void inputWordinSearch(String word){
-		driver.findElement(search).sendKeys("database");
+		
+		MobileElement element = (MobileElement) driver.findElement(search);
+		
+		if(element != null)
+			element.click();
+		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(element != null)
+			element.sendKeys(word);
+		
 	}
 	
 	public void inputEnterKeyinSearch(){
@@ -51,6 +70,10 @@ public class MainScreen extends NewBaseScreen {
 		driver.findElement(search).sendKeys(text);
 	}
 	
+
+	public void click(WebElement element){
+		element.click();
+	}
 	
 
 }

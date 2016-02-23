@@ -17,8 +17,6 @@ public class UrQARunner extends BlockJUnit4ClassRunner {
 
     @Override public void run(RunNotifier notifier){
     	
-    	System.err.println("notifier " + notifier);
-    	
     	if( !vector.contains(notifier)){
     		JUnitExecutionTestListener listener = new JUnitExecutionTestListener();	
     		notifier.addListener(listener);
@@ -28,11 +26,7 @@ public class UrQARunner extends BlockJUnit4ClassRunner {
     		vector.add(notifier);
     	}
     	
-    	System.out.println("end " + notifier);
-    	
         super.run(notifier);
-        
-        
     	
     }
     
